@@ -1,0 +1,63 @@
+#LOAD THE DATA
+root_path=[] #folder path
+filename="" #filename of cleaned data
+train_data=[] #to hold text
+target=[] #to hold actual answer of text
+
+file=open(root_path+filename)
+for line in file:
+  x,y=line.split(":")
+  train_data.append(x.strip()) #strip to remove \n from the end of the text
+  target.append(y.strip())
+  
+
+#CONVERT DATA INTO VECTOR
+from sklearn.feature_extraction.text import CountVectorizer
+
+cv=CountVectorizer(binary=False,ngram_range=(1,2))
+cv.fit(train_data) #create a matrix of all words
+train_data_vector=cv.fit(train_data) #convert the data into vector
+
+#to split data into testing and training
+from sklearn.model_selection import train_test_split
+
+x_train,x_test,y_train,y_test = train_test_split(
+    train_data_vector,target,train_size=0.80)
+    
+#to analyze the model
+from sklearn.metrics import accuracy_score , precision_score, recall_score
+
+#LOGISTIC REGRESSION MODEL
+from sklearn.linear_model import LogisticRegression
+
+logistic_model=LogisticRegression(C=0.06,max_iter=150,solver="lbfgs")
+#check the many values of c and find one giving maximum output
+
+logistic_model.fit(X_train,y_train) #train the model
+y_check=final_model.predict(X_test) #test the model 
+
+#analyze
+print("FOR LOGISTIC MODEL")
+print ("Accuracy: %s" % accuracy_score(y_test,y_check))
+print ("Precision: %s" % precision_score(y_test, y_check))
+print ("Recall: %s" % recall_score(y_test, y_check))
+
+#SVC MODEL
+from sklearn.svm import LinearSVC
+
+svm=LinearSVC(C=0.01,max_iter=150)
+#check the many values of c and find one giving maximum output
+
+svm.fit(X_train,y_train) #train model
+y_check=svm.predict(X_test) #test model
+
+print("FOR SVC :")
+print ("Final Accuracy: %s" % accuracy_score(y_test,y_check))
+print ("Final precision: %s" % precision_score(y_test, y_check))
+print ("Final recall: %s" % recall_score(y_test, y_check))
+
+#STORE THE MODEL FOR FUTURE USE
+import joblib
+
+filename=".pkl" #enter file name
+joblib.dump(cv,open(root_path+filename,'wb')) #wb or w+ according to python distribution
