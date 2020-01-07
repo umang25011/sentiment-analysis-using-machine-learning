@@ -34,7 +34,7 @@ logistic_model=LogisticRegression(C=0.06,max_iter=150,solver="lbfgs")
 #check the many values of c and find one giving maximum output
 
 logistic_model.fit(x_train,y_train) #train the model
-test_answers=logistic_model.predict(X_test) #test the model 
+test_answers=logistic_model.predict(x_test) #test the model 
 
 #analyze
 print("FOR LOGISTIC MODEL")
@@ -51,6 +51,7 @@ svc_model=LinearSVC(C=0.01,max_iter=150)
 svc_model.fit(X_train,y_train) #train model
 test_answers=svc_model.predict(x_test) #test model
 
+#analyze
 print("FOR SVC :")
 print ("Accuracy: %s" % accuracy_score(y_test,test_answers))
 print ("Precision: %s" % precision_score(y_test, test_answers))
@@ -62,8 +63,8 @@ import joblib
 filename="logistic_model.pkl" #enter file name
 joblib.dump(logistic_model,open(root_path+filename,'wb')) #wb or w+ according to python distribution
 
-filename="s.pkl" #enter file name
+filename="svc_model.pkl" #enter file name
 joblib.dump(svc_model,open(root_path+filename,'wb'))
 
-filename="logistic_model.pkl" #enter file name
+filename="text_to_vector.pkl" #enter file name
 joblib.dump(text_to_vector,open(root_path+filename,'wb'))
