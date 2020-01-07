@@ -6,10 +6,13 @@ Sentiment Analysis
 Sentiment Analysis is the most common text classification tool that analyses an incoming message and tells whether the underlying sentiment is positive, negative our neutral.
 
 We have used Bag of Words method to map text into vector representations.Logistic Regression and Suppoer Vector Classifier(LinearSVC) is used as model.
+
 What we do is :
+
 1)We clean the given data.Symbols are not useful for analysis.Also we remove stopwords like "is,are,am,have etc.." because they are not the decideing words of positive or negative sentiment in the text.
 
-2)Represent every text using vector.From training data, we created a large matrix(Sparse matrix) whose column represent every words in those data,and rows are the actual text in the form of 1 and 0. Words of text corrosponds to column is set to 1 and all other columns are 0.
+2)Represent every text using vector.From training data, we created a large matrix(Sparse matrix) whose column represent every words in those data,and rows are the actual text in the form of 1 and 0. Words of text corrosponds to column is set to 1 and all other columns 
+are 0.
 
 3)Feed this data to logistic and svc model ,so it can train itself about which words appear in the positive sentense and negative sentence.It will assign weigh to every word if this word is used for positive/negative feedback.
 
