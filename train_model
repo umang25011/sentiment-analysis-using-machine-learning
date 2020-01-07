@@ -14,9 +14,9 @@ for line in file:
 #CONVERT DATA INTO VECTOR
 from sklearn.feature_extraction.text import CountVectorizer
 
-cv=CountVectorizer(binary=False,ngram_range=(1,2))
-cv.fit(train_data) #create a matrix of all words
-train_data_vector=cv.fit(train_data) #convert the data into vector
+text_to_vector=CountVectorizer(binary=False,ngram_range=(1,2))
+text_to_vector.fit(train_data) #create a matrix of all words
+train_data_vector=text_to_vector.fit(train_data) #convert the data into vector
 
 #to split data into testing and training
 from sklearn.model_selection import train_test_split
@@ -33,31 +33,37 @@ from sklearn.linear_model import LogisticRegression
 logistic_model=LogisticRegression(C=0.06,max_iter=150,solver="lbfgs")
 #check the many values of c and find one giving maximum output
 
-logistic_model.fit(X_train,y_train) #train the model
-y_check=final_model.predict(X_test) #test the model 
+logistic_model.fit(x_train,y_train) #train the model
+test_answers=logistic_model.predict(X_test) #test the model 
 
 #analyze
 print("FOR LOGISTIC MODEL")
-print ("Accuracy: %s" % accuracy_score(y_test,y_check))
-print ("Precision: %s" % precision_score(y_test, y_check))
-print ("Recall: %s" % recall_score(y_test, y_check))
+print ("Accuracy: %s" % accuracy_score(y_test,test_answers))
+print ("Precision: %s" % precision_score(y_test, test_answers))
+print ("Recall: %s" % recall_score(y_test, test_answers))
 
 #SVC MODEL
 from sklearn.svm import LinearSVC
 
-svm=LinearSVC(C=0.01,max_iter=150)
+svc_model=LinearSVC(C=0.01,max_iter=150)
 #check the many values of c and find one giving maximum output
 
-svm.fit(X_train,y_train) #train model
-y_check=svm.predict(X_test) #test model
+svc_model.fit(X_train,y_train) #train model
+test_answers=svc_model.predict(x_test) #test model
 
 print("FOR SVC :")
-print ("Final Accuracy: %s" % accuracy_score(y_test,y_check))
-print ("Final precision: %s" % precision_score(y_test, y_check))
-print ("Final recall: %s" % recall_score(y_test, y_check))
+print ("Accuracy: %s" % accuracy_score(y_test,test_answers))
+print ("Precision: %s" % precision_score(y_test, test_answers))
+print ("Recall: %s" % recall_score(y_test, test_answers))
 
 #STORE THE MODEL FOR FUTURE USE
 import joblib
 
-filename=".pkl" #enter file name
-joblib.dump(cv,open(root_path+filename,'wb')) #wb or w+ according to python distribution
+filename="logistic_model.pkl" #enter file name
+joblib.dump(logistic_model,open(root_path+filename,'wb')) #wb or w+ according to python distribution
+
+filename="s.pkl" #enter file name
+joblib.dump(svc_model,open(root_path+filename,'wb'))
+
+filename="logistic_model.pkl" #enter file name
+joblib.dump(text_to_vector,open(root_path+filename,'wb'))
