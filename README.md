@@ -17,4 +17,4 @@ are 0.
 3)Feed this data to logistic and svc model ,so it can train itself about which words appear in the positive sentense and negative sentence.It will assign weight to every word if this word is used for positive/negative feedback.
 
 4)Now,find another texts for which we want to find sentiment,clean that data,vectorise it and give it to model.
-it will tell us if it is negative or positive.
+It will tell us if it is negative or positive.
