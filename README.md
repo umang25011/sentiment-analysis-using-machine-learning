@@ -5,6 +5,7 @@ Text Classifier — The basic building blocks
 Sentiment Analysis
 Sentiment Analysis is the most common text classification tool that analyses an incoming message and tells whether the underlying sentiment is positive, negative our neutral.
 
+Python is used as programming.
 We have used Bag of Words method to map text into vector representations.Logistic Regression and Suppoer Vector Classifier(LinearSVC) is used as model.
 
 What we do is :
