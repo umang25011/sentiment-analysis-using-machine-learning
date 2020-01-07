@@ -1,4 +1,5 @@
 #GET FILE AND READ DATA INTO train_data[] and target[]
+root_path="" #address of folder.so we don't have to write whole file address
 filename=""#enter file name here , clean_filename.txt will be generated
 train_data=[] #to hold text
 target=[] #to hold actual answer of text
